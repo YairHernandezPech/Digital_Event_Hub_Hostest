@@ -3,14 +3,20 @@ import 'package:hostess_digital/Components/TiketCard.dart';
 import 'package:hostess_digital/Home.dart';
 
 class HomeTiket extends StatefulWidget {
+  final String eventoNombre;
+  final int eventoId;
+
+  const HomeTiket({
+    Key? key,
+    required this.eventoNombre,
+    required this.eventoId,
+  }) : super(key: key);
 
   @override
   State<HomeTiket> createState() => _HomeTiketState();
 }
 
 class _HomeTiketState extends State<HomeTiket> {
-  String qrCode = 'Unknown';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +44,10 @@ class _HomeTiketState extends State<HomeTiket> {
             children: [
               // Aquí van todos los componentes del Home
               const SizedBox(
-                height: 50,
+                height: 250,
               ),
-              TicketCard(),
+              TicketCard(eventoNombre: widget.eventoNombre, eventoId: widget.eventoId,
+              ),
               //Detailtiket(),
             ],
           ),

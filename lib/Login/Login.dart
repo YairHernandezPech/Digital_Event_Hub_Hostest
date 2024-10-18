@@ -235,50 +235,6 @@ void _login(BuildContext context) async {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '¿Olvidaste tu contraseña?',
-                          style: GoogleFonts.openSans(
-                              fontSize: 15, fontWeight: FontWeight.w500),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                          },
-                          child: Text(
-                            'Restablecer',
-                            style: GoogleFonts.openSans(
-                                fontSize: 16,
-                                color: Colors.deepPurple,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    GestureDetector(
-                      onTap: () {
-                      },
-                      child: Container(
-                        width: 250,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.deepPurple, width: 2),
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Crear Cuenta',
-                            style: GoogleFonts.openSans(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.deepPurple),
-                          ),
-                        ),
-                      ),
-                    ),
                     const SizedBox(height: 15),
                   ],
                 ),

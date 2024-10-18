@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class TicketCard extends StatelessWidget {
 
+  final String eventoNombre;
+  final int eventoId;
+
+  const TicketCard({ Key? key, required this.eventoNombre, required this.eventoId, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class TicketCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
              Text(
-              "Nombre del evento xd",
+              "$eventoNombre",
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,

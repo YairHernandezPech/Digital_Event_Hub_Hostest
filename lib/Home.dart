@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-Future<void> scanQRCode() async {
+  Future<void> scanQRCode() async {
     final qrCode = await FlutterBarcodeScanner.scanBarcode(
       '#ff6666',
       'CANCEL',
@@ -75,51 +75,46 @@ Future<void> scanQRCode() async {
     final tiketService = TiketService();
     final response = await tiketService.create(qrCode);
 
-    if (response != null && response is Map<String, dynamic> && !response.containsKey('error')) {
-      
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomeTiket(),
-        ),
-      );
-    } else {
-      String errorMessage;
+    if (response != null) {
+      if (response is List) {
+        final ticketData = response[0];
+        final eventoNombre = ticketData['evento_nombre'];
+        final eventoId = ticketData['evento_id'];
 
-      if (response is Map<String, dynamic> && response.containsKey('error')) {
-        errorMessage = response['error'];
-      } 
-      else if (response is String) {
-        errorMessage = response;
-      } 
-      else {
-        errorMessage = 'Error desconocido al validar el ticket';
-      }
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          duration: const Duration(seconds: 3),
-          backgroundColor: const Color.fromARGB(128, 238, 127, 127),
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                HomeTiket(eventoNombre: eventoNombre, eventoId: eventoId),
           ),
-          content: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.cancel, color: Colors.white),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  errorMessage,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white),
+        );
+      } else if (response is String) {
+        // Si la respuesta es un string, mostrar el mensaje en el SnackBar
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: const Duration(seconds: 3),
+            backgroundColor: const Color.fromARGB(128, 238, 127, 127),
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            content: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.cancel, color: Colors.white),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    response,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
   }
 }
