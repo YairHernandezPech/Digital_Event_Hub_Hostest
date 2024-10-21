@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hostess_digital/Apis/Login.dart';
-import 'package:hostess_digital/Home.dart';
+import 'package:hostess_digital/Components/Home.dart';
 
 class SignInScreen extends StatefulWidget {
   @override

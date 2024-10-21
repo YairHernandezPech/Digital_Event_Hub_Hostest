@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:hostess_digital/Login/Token.dart';
+import 'package:hostess_digital/Components/Login/Token.dart';
 import 'package:http/http.dart' as http;
 
 class LoginService {
-  final String apiUrl = "http://192.168.1.48:4000/api/users/login";
+  final String apiUrl = "http://192.168.3.142:4000/api/users/login";
 
   Future<Map<String, dynamic>> login(Map<String, dynamic> data) async {
     final response = await http.post(

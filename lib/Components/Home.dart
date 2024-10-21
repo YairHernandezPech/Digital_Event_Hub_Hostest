@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:hostess_digital/Apis/Tiket.dart';
-import 'package:hostess_digital/Components/DetailEvent.dart';
-import 'package:hostess_digital/Components/Events.dart';
+import 'package:hostess_digital/Components/events/DetailEvent.dart';
+import 'package:hostess_digital/Components/events/Events.dart';
 import 'package:hostess_digital/Components/Header.dart';
-import 'package:hostess_digital/HomeTiket.dart';
+import 'package:hostess_digital/Components/tikes/CardTiker.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -78,14 +78,17 @@ class _HomeState extends State<Home> {
     if (response != null) {
       if (response is List) {
         final ticketData = response[0];
+        final horaIn = ticketData['hora_inicio'];
+        final horafin = ticketData['hora_fin'];
         final eventoNombre = ticketData['evento_nombre'];
+        final ubicacion = ticketData['ubicacion'];
+        final description = ticketData['descripcion'];
         final eventoId = ticketData['evento_id'];
-
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) =>
-                HomeTiket(eventoNombre: eventoNombre, eventoId: eventoId),
+                CardTiket(eventoNombre: eventoNombre, eventoId: eventoId, horaIn: horaIn, horafin: horafin, ubicacion: ubicacion, description: description),
           ),
         );
       } else if (response is String) {

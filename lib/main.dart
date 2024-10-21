@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hostess_digital/Login/Login.dart';
+import 'package:hostess_digital/Components/Login/Login.dart';
 
 void main() {
   runApp(MyApp());

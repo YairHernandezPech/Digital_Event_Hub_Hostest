@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class EventService {
-  final String baseUrl = 'http://192.168.1.48:4000/api/events';
+  final String baseUrl = 'http://192.168.3.142:4000/api/events';
 
   // Obtener todos los eventos aprobados
   Future<List<dynamic>> getAll() async {
