@@ -3,7 +3,7 @@ import 'package:hostess_digital/Components/Login/Token.dart';
 import 'package:http/http.dart' as http;
 
 class TiketService {
-  final String baseUrl = 'http://192.168.3.142:4000/api/ticket/scan';
+  final String baseUrl = 'http://192.168.0.136:4000/api/ticket/scan';
 
   Future<dynamic> create(String ticketCode) async {
     String? token = Token().token;
