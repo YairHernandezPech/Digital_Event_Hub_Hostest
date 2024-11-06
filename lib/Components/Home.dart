@@ -80,15 +80,20 @@ class _HomeState extends State<Home> {
         final ticketData = response[0];
         final horaIn = ticketData['hora_inicio'];
         final horafin = ticketData['hora_fin'];
-        final eventoNombre = ticketData['evento_nombre'];
+        final eventoNombre = ticketData['nombre'];
         final ubicacion = ticketData['ubicacion'];
         final description = ticketData['descripcion'];
         final eventoId = ticketData['evento_id'];
+        final fechaInicio = ticketData['fecha_inicio'];
+        final fechaTermino = ticketData['fecha_termino'];
+        final code = ticketData['code'];
+        final tipoEvento = ticketData['tipo_evento'];
+        
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) =>
-                CardTiket(eventoNombre: eventoNombre, eventoId: eventoId, horaIn: horaIn, horafin: horafin, ubicacion: ubicacion, description: description),
+                CardTiket(eventoNombre: eventoNombre, eventoId: eventoId, horaIn: horaIn, horafin: horafin, ubicacion: ubicacion, description: description, fechaInicio: fechaInicio,fechaTermino: fechaTermino,code: code,tipoEvento: tipoEvento,),
           ),
         );
       } else if (response is String) {

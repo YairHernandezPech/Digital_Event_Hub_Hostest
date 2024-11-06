@@ -3,7 +3,7 @@ import 'package:hostess_digital/Components/Login/Token.dart';
 import 'package:http/http.dart' as http;
 
 class TiketService {
-  final String baseUrl = 'http://192.168.0.136:4000/api/ticket/scan';
+  final String baseUrl = 'https://api-digital.fly.dev/api/ticket/scan';
 
   Future<dynamic> create(String ticketCode) async {
     String? token = Token().token;
@@ -21,7 +21,8 @@ class TiketService {
       if (response.statusCode == 200) {
         // Verificar si la respuesta es JSON
         if (response.headers['content-type']?.contains('application/json') ?? false) {
-          return jsonDecode(response.body); // Si es JSON, decodificarlo
+          print(response.body);
+          return jsonDecode(response.body);
         } else {
           return response.body; // Si no es JSON, devolver el texto tal cual
         }
